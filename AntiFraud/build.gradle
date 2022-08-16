@@ -51,8 +51,8 @@ afterEvaluate {
                 from components.release
 
                 groupId = 'com.cassbana.antifraud'
-                artifactId 'data-collection'
-                version ='0.0.1-beta'
+                artifactId ='data-collection'
+                version ='0.0.2-beta'
             }
         }
     }
