@@ -1,4 +1,4 @@
-package com.bluecrunch.microfinance.data.source.remote
+package com.cassbana.antifraud.data.source.remote
 
 import androidx.annotation.NonNull
 import okhttp3.RequestBody

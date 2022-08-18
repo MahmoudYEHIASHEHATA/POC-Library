@@ -12,6 +12,6 @@ fun logInstallationSuccess() {
 }
 
 private fun scheduleSIMInfoCollectWorkManager(context: Context) =
-    context.runWithPermissions(Manifest.permission.READ_PHONE_STATE) {
+//    context.runWithPermissions(Manifest.permission.READ_PHONE_STATE) {
         SIMInfoCollectWorker.start(context, 1)
-    }
+  //  }

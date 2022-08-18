@@ -168,16 +168,16 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            prod(MavenPublication) {
-//                from components.prod
-//
-//                groupId = 'com.cassbana.antifraud'
-//                artifactId = 'data-collection'
-//                version = '0.0.3-beta'
-//            }
-//        }
-//    }
-//}
+afterEvaluate {
+    publishing {
+        publications {
+            prod(MavenPublication) {
+                from components.prodRelease
+
+                groupId = 'com.cassbana.antifraud'
+                artifactId = 'data-collection'
+                version = '0.0.6-beta'
+            }
+        }
+    }
+}
