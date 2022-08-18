@@ -171,7 +171,7 @@ java {
 afterEvaluate {
     publishing {
         publications {
-            prod(MavenPublication) {
+            prodRelease(MavenPublication) {
                 from components.prodRelease
 
                 groupId = 'com.cassbana.antifraud'
