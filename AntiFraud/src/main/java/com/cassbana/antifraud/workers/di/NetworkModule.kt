@@ -293,7 +293,13 @@ val networkModule = module {
             get(named(GZIP_INTERCEPTOR))
         )
     }
-    single { provideRetrofit(BuildConfig, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
+
+    single { provideRetrofit(BuildConfig.BASE_URL, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
+
+    single(named(DEFAULT_RETROFIT)) {
+        provideRetrofit(BuildConfig.BASE_URL, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get())
+    }
+//    single { provideRetrofit(BuildConfig, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
 //
 //    single(named(DEFAULT_RETROFIT)) {
 //        provideRetrofit(BuildConfig., get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get())
