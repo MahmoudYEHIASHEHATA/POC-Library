@@ -171,12 +171,12 @@ java {
 afterEvaluate {
     publishing {
         publications {
-            qa(MavenPublication) {
+            release(MavenPublication) {
                 from components.qaRelease
 
                 groupId = 'com.cassbana.antifraud'
                 artifactId = 'data-collection'
-                version = '0.0.5'
+                version = '0.0.6'
             }
         }
     }
