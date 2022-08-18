@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
     id 'maven-publish'
 }
 
@@ -13,6 +14,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -28,6 +34,77 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    def envConfig
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            envConfig = loadPropertiesFromFile("config/dev.properties")
+            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+            versionName envConfig.VERSION_NAME.replace("\"", "")
+            resValue "string", "app_name", "CASS_DEV"
+            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+        }
+        stg {
+            envConfig = loadPropertiesFromFile("config/stg.properties")
+            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+            versionName envConfig.VERSION_NAME.replace("\"", "")
+            resValue "string", "app_name", "CASS_STG"
+            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+        }
+        qa {
+            envConfig = loadPropertiesFromFile("config/qa.properties")
+            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+            versionName envConfig.VERSION_NAME.replace("\"", "")
+            resValue "string", "app_name", "CASS_QA"
+            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+        }
+        preprod {
+            envConfig = loadPropertiesFromFile("config/preprod.properties")
+            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+            versionName envConfig.VERSION_NAME.replace("\"", "")
+            resValue "string", "app_name", "CASSBANA_PREPROD"
+            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+        }
+        prod {
+            envConfig = loadPropertiesFromFile("config/prod.properties")
+            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+            versionName envConfig.VERSION_NAME.replace("\"", "")
+            resValue "string", "app_name", "CASSBANA"
+            resValue "string", "CleverTap_ACCOUNT_ID", envConfig.CleverTap_ACCOUNT_ID
+            resValue "string", "CleverTap_TOKEN", envConfig.CleverTap_TOKEN
+        }
+    }
+    sourceSets {
+        dev {
+            res.srcDirs = ['src/english/res']
+        }
+        stg {
+            res.srcDirs = ['src/english/res']
+        }
+        qa {
+            res.srcDirs = ['src/english/res']
+        }
+        preprod {
+            res.srcDirs = ['src/english/res']
+        }
+    }
+}
+configurations {
+    devDebugImplementation
+    devReleaseImplementation
+
+    stgDebugImplementation
+    stgReleaseImplementation
+
+    qaDebugImplementation
+    qaReleaseImplementation
+
+    preprodDebugImplementation
+    preprodReleaseImplementation
+
+    prodDebugImplementation
+    prodReleaseImplementation
 }
 
 dependencies {
@@ -35,6 +112,45 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.work:work-runtime-ktx:2.7.1'
+
+    //Room database
+    def roomVersion = "2.4.3"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+
+
+    // Koin
+    def koin_version = "3.2.0"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit5:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-android-compat:$koin_version"
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
+    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+
+    // Retrofit and json
+    def retrofitVersion = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation 'com.google.code.gson:gson:2.9.1'
+
+    // Logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+
+    //Get FingerPrintID
+    implementation "com.github.fingerprintjs:fingerprint-android:1.2"
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -44,16 +160,16 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-afterEvaluate {
-    publishing{
-        publications{
-            register(MavenPublication){
-                from components.release
-
-                groupId = 'com.cassbana.antifraud'
-                artifactId ='data-collection'
-                version ='0.0.3-beta'
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            prod(MavenPublication) {
+//                from components.prod
+//
+//                groupId = 'com.cassbana.antifraud'
+//                artifactId = 'data-collection'
+//                version = '0.0.3-beta'
+//            }
+//        }
+//    }
+//}

@@ -1,0 +1,14 @@
+package com.bluecrunch.microfinance.data.source.remote
+
+import androidx.annotation.NonNull
+import okhttp3.RequestBody
+
+object RemoteUtils {
+
+    @NonNull
+    fun createPartFromString(contentString: String): RequestBody {
+        return RequestBody.create(
+            okhttp3.MultipartBody.FORM, contentString
+        )
+    }
+}
