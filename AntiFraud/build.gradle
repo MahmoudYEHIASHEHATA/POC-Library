@@ -176,13 +176,7 @@ afterEvaluate {
 
                 groupId = 'com.cassbana.antifraud'
                 artifactId = 'data-collection'
-                version = '0.0.4'
-
-                pom {
-                    packaging = 'aar'
-                    name ='data-collection'
-                }
-
+                version = '0.0.5'
             }
         }
     }
