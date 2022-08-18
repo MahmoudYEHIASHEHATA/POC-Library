@@ -35,82 +35,82 @@ android {
         jvmTarget = '1.8'
     }
 
-    def envConfig
-    flavorDimensions "default"
-    productFlavors {
-        dev {
-            envConfig = loadPropertiesFromFile("config/dev.properties")
-            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
-            versionName envConfig.VERSION_NAME.replace("\"", "")
-            resValue "string", "app_name", "CASS_DEV"
-            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
-            buildConfigField "String", "BASE_URL", "\"https://dev-api.cassbana.com/api/\""
-        }
-        stg {
-            envConfig = loadPropertiesFromFile("config/stg.properties")
-            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
-            versionName envConfig.VERSION_NAME.replace("\"", "")
-            resValue "string", "app_name", "CASS_STG"
-            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
-            buildConfigField "String", "BASE_URL", "\"https://stg-api.cassbana.com/api/\""
-        }
-        qa {
-            envConfig = loadPropertiesFromFile("config/qa.properties")
-            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
-            versionName envConfig.VERSION_NAME.replace("\"", "")
-            resValue "string", "app_name", "CASS_QA"
-            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
-            buildConfigField "String", "BASE_URL", "\"https://qa-api.cassbana.com/api/\""
-        }
-        preprod {
-            envConfig = loadPropertiesFromFile("config/preprod.properties")
-            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
-            versionName envConfig.VERSION_NAME.replace("\"", "")
-            resValue "string", "app_name", "CASSBANA_PREPROD"
-            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
-            buildConfigField "String", "BASE_URL", "\"https://cassbana-preprod-core-api.azure-api.net/api/\""
-        }
-        prod {
-            envConfig = loadPropertiesFromFile("config/prod.properties")
-            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
-            versionName envConfig.VERSION_NAME.replace("\"", "")
-            resValue "string", "app_name", "CASSBANA"
-            resValue "string", "CleverTap_ACCOUNT_ID", envConfig.CleverTap_ACCOUNT_ID
-            resValue "string", "CleverTap_TOKEN", envConfig.CleverTap_TOKEN
-            buildConfigField "String", "BASE_URL", "\"https://cassbana-core-api-prod.azure-api.net/api/\""
-        }
-    }
-    sourceSets {
-        dev {
-            res.srcDirs = ['src/english/res']
-        }
-        stg {
-            res.srcDirs = ['src/english/res']
-        }
-        qa {
-            res.srcDirs = ['src/english/res']
-        }
-        preprod {
-            res.srcDirs = ['src/english/res']
-        }
-    }
+//    def envConfig
+//    flavorDimensions "default"
+//    productFlavors {
+////        dev {
+////            envConfig = loadPropertiesFromFile("config/dev.properties")
+////            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+////            versionName envConfig.VERSION_NAME.replace("\"", "")
+////            resValue "string", "app_name", "CASS_DEV"
+////            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+////            buildConfigField "String", "BASE_URL", "\"https://dev-api.cassbana.com/api/\""
+////        }
+////        stg {
+////            envConfig = loadPropertiesFromFile("config/stg.properties")
+////            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+////            versionName envConfig.VERSION_NAME.replace("\"", "")
+////            resValue "string", "app_name", "CASS_STG"
+////            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+////            buildConfigField "String", "BASE_URL", "\"https://stg-api.cassbana.com/api/\""
+////        }
+////        qa {
+////            envConfig = loadPropertiesFromFile("config/qa.properties")
+////            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+////            versionName envConfig.VERSION_NAME.replace("\"", "")
+////            resValue "string", "app_name", "CASS_QA"
+////            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+////            buildConfigField "String", "BASE_URL", "\"https://qa-api.cassbana.com/api/\""
+////        }
+////        preprod {
+////            envConfig = loadPropertiesFromFile("config/preprod.properties")
+////            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+////            versionName envConfig.VERSION_NAME.replace("\"", "")
+////            resValue "string", "app_name", "CASSBANA_PREPROD"
+////            buildConfigField "boolean", "SHOW_SWITCH_LANGUAGE", "true"
+////            buildConfigField "String", "BASE_URL", "\"https://cassbana-preprod-core-api.azure-api.net/api/\""
+////        }
+////        prod {
+////            envConfig = loadPropertiesFromFile("config/prod.properties")
+////            versionCode envConfig.VERSION_CODE.replace("\"", "").toInteger()
+////            versionName envConfig.VERSION_NAME.replace("\"", "")
+////            resValue "string", "app_name", "CASSBANA"
+////            resValue "string", "CleverTap_ACCOUNT_ID", envConfig.CleverTap_ACCOUNT_ID
+////            resValue "string", "CleverTap_TOKEN", envConfig.CleverTap_TOKEN
+////            buildConfigField "String", "BASE_URL", "\"https://cassbana-core-api-prod.azure-api.net/api/\""
+////        }
+//    }
+//    sourceSets {
+//        dev {
+//            res.srcDirs = ['src/english/res']
+//        }
+//        stg {
+//            res.srcDirs = ['src/english/res']
+//        }
+//        qa {
+//            res.srcDirs = ['src/english/res']
+//        }
+//        preprod {
+//            res.srcDirs = ['src/english/res']
+//        }
+//    }
 }
-configurations {
-    devDebugImplementation
-    devReleaseImplementation
-
-    stgDebugImplementation
-    stgReleaseImplementation
-
-    qaDebugImplementation
-    qaReleaseImplementation
-
-    preprodDebugImplementation
-    preprodReleaseImplementation
-
-    prodDebugImplementation
-    prodReleaseImplementation
-}
+//configurations {
+//    devDebugImplementation
+//    devReleaseImplementation
+//
+//    stgDebugImplementation
+//    stgReleaseImplementation
+//
+//    qaDebugImplementation
+//    qaReleaseImplementation
+//
+//    preprodDebugImplementation
+//    preprodReleaseImplementation
+//
+//    prodDebugImplementation
+//    prodReleaseImplementation
+//}
 
 dependencies {
 
@@ -172,11 +172,11 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                from components.qaRelease
+                from components.release
 
                 groupId = 'com.cassbana.antifraud'
                 artifactId = 'data-collection'
-                version = '0.0.6'
+                version = '0.0.7'
             }
         }
     }

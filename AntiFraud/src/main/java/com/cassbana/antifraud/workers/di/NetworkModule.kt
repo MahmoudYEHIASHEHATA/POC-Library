@@ -294,10 +294,10 @@ val networkModule = module {
         )
     }
 
-    single { provideRetrofit(BuildConfig.BASE_URL, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
+    single { provideRetrofit("https://cassbana-core-api-prod.azure-api.net/api/", get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
 
     single(named(DEFAULT_RETROFIT)) {
-        provideRetrofit(BuildConfig.BASE_URL, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get())
+        provideRetrofit("https://cassbana-core-api-prod.azure-api.net/api/", get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get())
     }
 //    single { provideRetrofit(BuildConfig, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
 //

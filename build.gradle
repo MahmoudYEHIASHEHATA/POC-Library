@@ -10,35 +10,35 @@ buildscript {
         google()
         mavenCentral()
     }
-    ext.loadPropertiesFromFile = { fileName ->
-        def propertiesFile = rootProject.file(fileName)
-        def properties = new Properties()
-        properties.load(new FileInputStream(propertiesFile))
-        return properties
-    }
-
-    ext.getCurrentFlavor = {
-        Gradle gradle = getGradle()
-        def pattern = Pattern.compile("([A-Z][A-Za-z]+)(Release|Debug)")
-        def flavor = ""
-
-        gradle.getStartParameter().getTaskNames().any() { name ->
-            Matcher matcher = pattern.matcher(name)
-            if (matcher.find()) {
-                flavor = matcher.group(1).toLowerCase()
-                return true
-            }
-        }
-        return flavor
-    }
-    ext {
-        flavor = getCurrentFlavor()
-        if (flavor.isEmpty()) {
-            flavor = "dev"
-        }
-        flavor = flavor.replaceAll("test", "")
-        config = loadPropertiesFromFile('config/' + flavor + '.properties')
-    }
+//    ext.loadPropertiesFromFile = { fileName ->
+//        def propertiesFile = rootProject.file(fileName)
+//        def properties = new Properties()
+//        properties.load(new FileInputStream(propertiesFile))
+//        return properties
+//    }
+//
+//    ext.getCurrentFlavor = {
+//        Gradle gradle = getGradle()
+//        def pattern = Pattern.compile("([A-Z][A-Za-z]+)(Release|Debug)")
+//        def flavor = ""
+//
+//        gradle.getStartParameter().getTaskNames().any() { name ->
+//            Matcher matcher = pattern.matcher(name)
+//            if (matcher.find()) {
+//                flavor = matcher.group(1).toLowerCase()
+//                return true
+//            }
+//        }
+//        return flavor
+//    }
+//    ext {
+//        flavor = getCurrentFlavor()
+//        if (flavor.isEmpty()) {
+//            flavor = "dev"
+//        }
+//        flavor = flavor.replaceAll("test", "")
+//        config = loadPropertiesFromFile('config/' + flavor + '.properties')
+//    }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.4'
