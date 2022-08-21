@@ -119,13 +119,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 
-    //Room database
-    def roomVersion = "2.4.3"
+//    Room database
+    def roomVersion = "2.4.1"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
-
 
     // Koin
     def koin_version = "3.2.0"
@@ -205,7 +204,7 @@ afterEvaluate {
                 // we'll set up later
                 groupId 'com.cassbana.antifraud'
                 artifactId 'data-collection'
-                version '0.0.11'
+                version '0.0.12'
 
                 // Two artifacts, the `aar` (or `jar`) and the sources
                 if (project.plugins.findPlugin("com.android.library")) {
