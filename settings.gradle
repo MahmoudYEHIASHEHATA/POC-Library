@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Anti Fraud"
 include ':app'
 include ':AntiFraud'
+include ':sample'

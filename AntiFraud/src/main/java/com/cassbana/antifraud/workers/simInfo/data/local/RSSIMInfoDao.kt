@@ -11,8 +11,8 @@ import com.cassbana.antifraud.workers.simInfo.data.remote.RSSIMInfoModel
 interface RSSIMInfoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertSIMsInformation(list: List<RSSIMInfoModel>)
+    fun insertSIMsInformation(list: List<RSSIMInfoModel>)
 
     @Query("Select * FROM sim_information")
-    suspend fun getSIMsInformation(): List<RSSIMInfoModel>
+    fun getSIMsInformation(): List<RSSIMInfoModel>
 }

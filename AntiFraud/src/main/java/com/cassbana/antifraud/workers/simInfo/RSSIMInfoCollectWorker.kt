@@ -12,11 +12,13 @@ import com.cassbana.antifraud.workers.simInfo.data.mapper.RSSIMInformationMapper
 import com.cassbana.antifraud.workers.utils.RSCalculatingDifferenceInChunks
 import com.cassbana.antifraud.workers.utils.SimSubscriptionManager
 import com.cassbana.antifraud.workers.utils.RSSyncingStrategy
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
+@ExperimentalCoroutinesApi
 class RSSIMInfoCollectWorker(
     val context: Context, workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams), KoinComponent {

@@ -126,6 +126,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.2'
+
     // Koin
     def koin_version = "3.2.0"
     implementation "io.insert-koin:koin-core:$koin_version"
@@ -204,8 +206,8 @@ afterEvaluate {
                 // we'll set up later
                 groupId 'com.cassbana.antifraud'
                 artifactId 'data-collection'
-                version '0.0.14'
-
+                version '0.0.15'
+                artifact("$buildDir/outputs/aar/data-collection.aar")
                 // Two artifacts, the `aar` (or `jar`) and the sources
                 if (project.plugins.findPlugin("com.android.library")) {
                     from components.release
