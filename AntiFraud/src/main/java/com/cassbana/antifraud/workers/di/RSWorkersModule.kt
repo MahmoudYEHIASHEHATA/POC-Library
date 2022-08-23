@@ -3,9 +3,9 @@ package com.cassbana.antifraud.workers.di
 
 
 import com.cassbana.antifraud.workers.simInfo.data.mapper.RSSIMInformationMapper
-import com.bluecrunch.microfinance.workers.utils.UniqueIDGeneratorUseCase
-import com.bluecrunch.microfinance.workers.utils.UniqueIDGeneratorWrapper
-import com.bluecrunch.microfinance.workers.utils.UniqueIDGeneratorWrapperImpl
+import com.cassbana.antifraud.workers.utils.RSUniqueIDGeneratorUseCase
+import com.cassbana.antifraud.workers.utils.RSUniqueIDGeneratorWrapper
+import com.cassbana.antifraud.workers.utils.UniqueIDGeneratorWrapperImpl
 import com.cassbana.antifraud.data.*
 import com.cassbana.antifraud.database.RSAppDatabase
 import org.koin.core.qualifier.named
@@ -24,6 +24,6 @@ val workersModule = module {
 
     factory { RSSIMInformationMapper() }
 
-    factory <UniqueIDGeneratorWrapper>{ UniqueIDGeneratorWrapperImpl(get()) }
-    factory { UniqueIDGeneratorUseCase(get()) }
+    factory <RSUniqueIDGeneratorWrapper>{ UniqueIDGeneratorWrapperImpl(get()) }
+    factory { RSUniqueIDGeneratorUseCase(get()) }
 }

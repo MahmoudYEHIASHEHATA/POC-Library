@@ -1,11 +1,10 @@
-package com.bluecrunch.microfinance.workers.utils
+package com.cassbana.antifraud.workers.utils
 
 import android.content.Context
-import com.cassbana.antifraud.workers.utils.RSUniqueIDGenerator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 
-interface UniqueIDGeneratorWrapper {
+interface RSUniqueIDGeneratorWrapper {
     fun getUUID(): String
 
     suspend fun getFingerPrinterId(): String
@@ -14,7 +13,7 @@ interface UniqueIDGeneratorWrapper {
 @ExperimentalCoroutinesApi
 class UniqueIDGeneratorWrapperImpl(
     private val context: Context
-): UniqueIDGeneratorWrapper {
+): RSUniqueIDGeneratorWrapper {
     override fun getUUID(): String = RSUniqueIDGenerator.getUUID(context)
 
     override suspend fun getFingerPrinterId(): String =
@@ -22,8 +21,8 @@ class UniqueIDGeneratorWrapperImpl(
 }
 
 @ExperimentalCoroutinesApi
-class UniqueIDGeneratorUseCase(
-    private val uniqueIDGeneratorWrapper: UniqueIDGeneratorWrapper
+class RSUniqueIDGeneratorUseCase(
+    private val uniqueIDGeneratorWrapper: RSUniqueIDGeneratorWrapper
 ) {
     fun getUUID() = uniqueIDGeneratorWrapper.getUUID()
 

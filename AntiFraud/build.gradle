@@ -204,7 +204,7 @@ afterEvaluate {
                 // we'll set up later
                 groupId 'com.cassbana.antifraud'
                 artifactId 'data-collection'
-                version '0.0.13'
+                version '0.0.14'
 
                 // Two artifacts, the `aar` (or `jar`) and the sources
                 if (project.plugins.findPlugin("com.android.library")) {
