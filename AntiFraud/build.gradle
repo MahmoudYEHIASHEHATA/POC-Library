@@ -206,8 +206,7 @@ afterEvaluate {
                 // we'll set up later
                 groupId 'com.cassbana.antifraud'
                 artifactId 'data-collection'
-                artifact("$buildDir/outputs/aar/AntiFraud-debug.aar")
-                version '0.0.16'
+                version '0.1.0'
                 // Two artifacts, the `aar` (or `jar`) and the sources
                 if (project.plugins.findPlugin("com.android.library")) {
                     from components.release
