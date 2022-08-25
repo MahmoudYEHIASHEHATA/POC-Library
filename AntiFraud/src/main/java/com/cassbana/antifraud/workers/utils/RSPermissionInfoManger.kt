@@ -1,4 +1,4 @@
-package com.bluecrunch.microfinance.workers.utils
+package com.cassbana.antifraud.workers.utils
 
 import android.content.Context
 import android.content.pm.PackageInfo
