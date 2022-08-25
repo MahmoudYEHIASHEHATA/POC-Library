@@ -12,7 +12,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-val workersModule = module {
+val workersModuleRS = module {
     factory { get<RSAppDatabase>().simInformationDAO() }
 
     factory { get<Retrofit>(named(FRAUD_RETROFIT)).create(RSFraudApis::class.java) }

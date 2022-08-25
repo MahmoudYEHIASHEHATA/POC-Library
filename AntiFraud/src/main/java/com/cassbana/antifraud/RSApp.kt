@@ -2,7 +2,7 @@ package com.cassbana.antifraud
 
 import android.app.Application
 import android.content.Context
-import com.cassbana.antifraud.workers.di.workersModule
+import com.cassbana.antifraud.workers.di.workersModuleRS
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 
@@ -19,7 +19,7 @@ class RSApp : Application() {
             androidContext(this@RSApp)
             modules(
                 listOf(
-                    workersModule
+                    workersModuleRS
                 )
             )
         }
