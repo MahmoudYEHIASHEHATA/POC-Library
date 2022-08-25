@@ -6,9 +6,6 @@ import com.cassbana.antifraud.data.source.prefs.preferencesGateway
 import com.cassbana.antifraud.RSConstants
 import com.cassbana.antifraud.RSDomain
 import com.cassbana.antifraud.utils.RSUtils
-import com.chuckerteam.chucker.api.ChuckerCollector
-import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.chuckerteam.chucker.api.RetentionManager
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -154,27 +151,9 @@ fun provideCacheInterceptor(): Interceptor {
     }
 }
 
-private fun provideChuckerInterceptor(): ChuckerInterceptor {
-    val chuckerCollector = ChuckerCollector(
-        context = RSDomain.application,
-        // Toggles visibility of the push notification
-        showNotification = true,
-        // Allows to customize the retention period of collected data
-        retentionPeriod = RetentionManager.Period.ONE_HOUR
-    )
 
 // Create the Interceptor
-   return ChuckerInterceptor.Builder(RSDomain.application.baseContext)
-        // The previously created Collector
-        .collector(chuckerCollector)
-        // The max body content length in bytes, after this responses will be truncated.
-        .maxContentLength(250_000L)
-        // Read the whole response body even when the client does not consume the response completely.
-        // This is useful in case of parsing errors or when the response body
-        // is closed before being read like in Retrofit with Void and Unit types.
-        .alwaysReadResponseBody(true)
-        .build()
-}
+
 
 fun provideOkHttpClient(
     cache: Cache?,
@@ -215,7 +194,6 @@ fun provideOkHttpClient(
 //        addNetworkInterceptor(cacheInterceptor)
             addNetworkInterceptor(onlineCacheInterceptor)
             addInterceptor(offlineCacheInterceptor)
-            addInterceptor(provideChuckerInterceptor())
             cache(cache)
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O)
                 sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
