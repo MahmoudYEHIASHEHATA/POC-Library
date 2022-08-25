@@ -4,7 +4,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.cassbana.antifraud.RSApp
 
-private const val NAME = "PREFERENCES_NAME"
+private const val NAME = "PREFERENCES_NAME_RS"
 
 val preferencesGateway by lazy {
     Preferences(RSApp.context.getSharedPreferences(NAME, MODE_PRIVATE))
