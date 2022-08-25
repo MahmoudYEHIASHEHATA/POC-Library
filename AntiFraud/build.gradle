@@ -168,33 +168,6 @@ java {
 }
 
 
-task hello {
-    println 'Configure Hello Gradle'
-    doFirst {
-        println 'Hello Gradle First'
-    }
-    doLast {
-        println 'Hello Gradle Last'
-    }
-}
-task start {
-    println 'Configure Hello Start'
-    doFirst {
-        println 'Hello Start First'
-    }
-    doLast {
-        println 'Hello Start Last'
-    }
-}
-hello.dependsOn start
-description = """
-Example project for a Gradle build
-
-Project name: ${project.name}
-
-More detailed information here... """
-
-
 afterEvaluate {
     publishing {
         publications {
@@ -204,7 +177,7 @@ afterEvaluate {
                 // we'll set up later
                 groupId 'com.cassbana.antifraud'
                 artifactId 'data-collection'
-                version '0.1.6'
+                version '0.1.7'
                 // Two artifacts, the `aar` (or `jar`) and the sources
                 if (project.plugins.findPlugin("com.android.library")) {
                     from components.release
