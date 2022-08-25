@@ -35,19 +35,19 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
 
-const val LOGGING_INTERCEPTOR = "logging-interceptor"
-const val NETWORK_INTERCEPTOR = "network-interceptor"
-const val ONLINE_CACHE_INTERCEPTOR = "online-cache-interceptor"
-const val OFFLINE_CACHE_INTERCEPTOR = "offline-cache-interceptor"
-const val CACHE_INTERCEPTOR = "cache-interceptor"
-const val LANGUAGE_INTERCEPTOR = "language-interceptor"
-const val GZIP_INTERCEPTOR = "GZIP_interceptor"
-const val DEFAULT_OKHTTP = "DEFAULT-OKHTTP"
-const val GZIP_OKHTTP = "GZIP-OKHTTP"
-const val CALL_ADAPTER = "call-adapter"
-const val DEFAULT_RETROFIT = "DEFAULT_RETROFIT"
-const val FRAUD_RETROFIT = "FRAUD_RETROFIT"
-const val OCR_RETROFIT = "OCR_RETROFIT"
+const val LOGGING_INTERCEPTOR = "logging-interceptor-RS"
+const val NETWORK_INTERCEPTOR = "network-interceptor-RS"
+const val ONLINE_CACHE_INTERCEPTOR = "online-cache-interceptor-RS"
+const val OFFLINE_CACHE_INTERCEPTOR = "offline-cache-interceptor-RS"
+const val CACHE_INTERCEPTOR = "cache-interceptor-RS"
+const val LANGUAGE_INTERCEPTOR = "language-interceptor-RS"
+const val GZIP_INTERCEPTOR = "GZIP_interceptor-RS"
+const val DEFAULT_OKHTTP = "DEFAULT-OKHTTP-RS"
+const val GZIP_OKHTTP = "GZIP-OKHTTP-RS"
+const val CALL_ADAPTER = "call-adapter-RS"
+const val DEFAULT_RETROFIT = "DEFAULT_RETROFIT-RS"
+const val FRAUD_RETROFIT = "FRAUD_RETROFIT-RS"
+const val OCR_RETROFIT = "OCR_RETROFIT-RS"
 
 fun provideHTTPLoggingInterceptor(): HttpLoggingInterceptor {
     val interceptor = HttpLoggingInterceptor { message -> Timber.e(message) };
