@@ -15,7 +15,7 @@ import retrofit2.Retrofit
 val workersModuleRS = module {
     factory { get<RSAppDatabase>().simInformationDAO() }
 
-    factory { get<Retrofit>(named(FRAUD_RETROFIT)).create(RSFraudApis::class.java) }
+    factory { get<Retrofit>(named(FRAUD_RETROFIT_RS)).create(RSFraudApis::class.java) }
 
     factory <RSFraudRemoteDataSource> { RSFraudRemoteDataSourceImpl(get(), get(), ) }
     factory <RSFraudLocalDataSource> { RSFraudLocalDataSourceImpl() }

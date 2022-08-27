@@ -32,18 +32,18 @@ import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
 
-const val LOGGING_INTERCEPTOR = "logging-interceptor-RS"
-const val NETWORK_INTERCEPTOR = "network-interceptor-RS"
-const val ONLINE_CACHE_INTERCEPTOR = "online-cache-interceptor-RS"
-const val OFFLINE_CACHE_INTERCEPTOR = "offline-cache-interceptor-RS"
-const val CACHE_INTERCEPTOR = "cache-interceptor-RS"
-const val LANGUAGE_INTERCEPTOR = "language-interceptor-RS"
-const val GZIP_INTERCEPTOR = "GZIP_interceptor-RS"
-const val DEFAULT_OKHTTP = "DEFAULT-OKHTTP-RS"
-const val GZIP_OKHTTP = "GZIP-OKHTTP-RS"
-const val CALL_ADAPTER = "call-adapter-RS"
-const val DEFAULT_RETROFIT = "DEFAULT_RETROFIT-RS"
-const val FRAUD_RETROFIT = "FRAUD_RETROFIT-RS"
+const val LOGGING_INTERCEPTOR_RS = "logging-interceptor-RS"
+const val NETWORK_INTERCEPTOR_RS = "network-interceptor-RS"
+const val ONLINE_CACHE_INTERCEPTOR_RS = "online-cache-interceptor-RS"
+const val OFFLINE_CACHE_INTERCEPTOR_RS = "offline-cache-interceptor-RS"
+const val CACHE_INTERCEPTOR_RS = "cache-interceptor-RS"
+const val LANGUAGE_INTERCEPTOR_RS = "language-interceptor-RS"
+const val GZIP_INTERCEPTOR_RS = "GZIP_interceptor-RS"
+const val DEFAULT_OKHTTP_RS = "DEFAULT-OKHTTP-RS"
+const val GZIP_OKHTTP_RS = "GZIP-OKHTTP-RS"
+const val CALL_ADAPTER_RS = "call-adapter-RS"
+const val DEFAULT_RETROFIT_RS = "DEFAULT_RETROFIT-RS"
+const val FRAUD_RETROFIT_RS = "FRAUD_RETROFIT-RS"
 const val OCR_RETROFIT = "OCR_RETROFIT-RS"
 
 fun provideHTTPLoggingInterceptor(): HttpLoggingInterceptor {
@@ -230,49 +230,49 @@ fun provideCache(): Cache {
 }
 
 val networkModule = module {
-    single(named(LOGGING_INTERCEPTOR)) { provideHTTPLoggingInterceptor() }
-    single(named(NETWORK_INTERCEPTOR)) { provideNetworkInterceptor() }
-    single(named(ONLINE_CACHE_INTERCEPTOR)) { provideOnlineCacheInterceptor() }
-    single(named(OFFLINE_CACHE_INTERCEPTOR)) { provideOfflineCacheInterceptor() }
-    single(named(CACHE_INTERCEPTOR)) { provideCacheInterceptor() }
-    single(named(LANGUAGE_INTERCEPTOR)) { provideLanguageInterceptor() }
+    single(named(LOGGING_INTERCEPTOR_RS)) { provideHTTPLoggingInterceptor() }
+    single(named(NETWORK_INTERCEPTOR_RS)) { provideNetworkInterceptor() }
+    single(named(ONLINE_CACHE_INTERCEPTOR_RS)) { provideOnlineCacheInterceptor() }
+    single(named(OFFLINE_CACHE_INTERCEPTOR_RS)) { provideOfflineCacheInterceptor() }
+    single(named(CACHE_INTERCEPTOR_RS)) { provideCacheInterceptor() }
+    single(named(LANGUAGE_INTERCEPTOR_RS)) { provideLanguageInterceptor() }
     single { provideCache() }
     single { provideJsonConverterFactory(get()) }
-    single(named(CALL_ADAPTER)) { provideCallAdapter() }
-    single (named(GZIP_INTERCEPTOR)) { provideGZIPInterceptor()}
+    single(named(CALL_ADAPTER_RS)) { provideCallAdapter() }
+    single (named(GZIP_INTERCEPTOR_RS)) { provideGZIPInterceptor()}
     single {
         GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
     }
-    single (named(DEFAULT_OKHTTP)){
+    single (named(DEFAULT_OKHTTP_RS)){
         provideOkHttpClient(
             cache = null,
-            httpLoggingInterceptor = get(named(LOGGING_INTERCEPTOR)),
-            networkInterceptor = get(named(NETWORK_INTERCEPTOR)),
-            languageInterceptor = get(named(LANGUAGE_INTERCEPTOR)),
-            onlineCacheInterceptor = get(named(ONLINE_CACHE_INTERCEPTOR)),
-            offlineCacheInterceptor = get(named(OFFLINE_CACHE_INTERCEPTOR)),
-            cacheInterceptor = get(named(CACHE_INTERCEPTOR)),
+            httpLoggingInterceptor = get(named(LOGGING_INTERCEPTOR_RS)),
+            networkInterceptor = get(named(NETWORK_INTERCEPTOR_RS)),
+            languageInterceptor = get(named(LANGUAGE_INTERCEPTOR_RS)),
+            onlineCacheInterceptor = get(named(ONLINE_CACHE_INTERCEPTOR_RS)),
+            offlineCacheInterceptor = get(named(OFFLINE_CACHE_INTERCEPTOR_RS)),
+            cacheInterceptor = get(named(CACHE_INTERCEPTOR_RS)),
             gzipInterceptor = null
         )
     }
-    single (named(GZIP_OKHTTP)){
+    single (named(GZIP_OKHTTP_RS)){
         provideOkHttpClient(
             get(),
-            get(named(LOGGING_INTERCEPTOR)),
-            get(named(NETWORK_INTERCEPTOR)),
-            get(named(LANGUAGE_INTERCEPTOR)),
-            get(named(ONLINE_CACHE_INTERCEPTOR)),
-            get(named(OFFLINE_CACHE_INTERCEPTOR)),
-            get(named(CACHE_INTERCEPTOR)),
-            get(named(GZIP_INTERCEPTOR))
+            get(named(LOGGING_INTERCEPTOR_RS)),
+            get(named(NETWORK_INTERCEPTOR_RS)),
+            get(named(LANGUAGE_INTERCEPTOR_RS)),
+            get(named(ONLINE_CACHE_INTERCEPTOR_RS)),
+            get(named(OFFLINE_CACHE_INTERCEPTOR_RS)),
+            get(named(CACHE_INTERCEPTOR_RS)),
+            get(named(GZIP_INTERCEPTOR_RS))
         )
     }
 
-    single { provideRetrofit("https://cassbana-core-api-prod.azure-api.net/api/", get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
+    single { provideRetrofit("https://cassbana-core-api-prod.azure-api.net/api/", get(named(DEFAULT_OKHTTP_RS)), get(named(CALL_ADAPTER_RS)), get()) }
 
-    single(named(DEFAULT_RETROFIT)) {
-        provideRetrofit("https://cassbana-core-api-prod.azure-api.net/api/", get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get())
+    single(named(DEFAULT_RETROFIT_RS)) {
+        provideRetrofit("https://cassbana-core-api-prod.azure-api.net/api/", get(named(DEFAULT_OKHTTP_RS)), get(named(CALL_ADAPTER_RS)), get())
     }
 //    single { provideRetrofit(BuildConfig, get(named(DEFAULT_OKHTTP)), get(named(CALL_ADAPTER)), get()) }
 //
