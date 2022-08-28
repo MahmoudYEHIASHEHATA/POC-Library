@@ -229,7 +229,7 @@ fun provideCache(): Cache {
     return Cache(File(RSDomain.application.cacheDir, "Responses"), (10 * 1000 * 1000).toLong())
 }
 
-val networkModule = module {
+val networkModuleRS = module {
     single(named(LOGGING_INTERCEPTOR_RS)) { provideHTTPLoggingInterceptor() }
     single(named(NETWORK_INTERCEPTOR_RS)) { provideNetworkInterceptor() }
     single(named(ONLINE_CACHE_INTERCEPTOR_RS)) { provideOnlineCacheInterceptor() }

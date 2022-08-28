@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.work.*
 import com.cassbana.antifraud.workers.simInfo.data.remote.RSSIMInfoModel
 import com.cassbana.antifraud.BuildConfig
+import com.cassbana.antifraud.MySdkKoinComponent
 import com.cassbana.antifraud.data.RSFraudRepository
 import com.cassbana.antifraud.data.model.SyncListData
 import com.cassbana.antifraud.workers.constants.RSWorkerConstants
@@ -13,7 +14,6 @@ import com.cassbana.antifraud.workers.utils.RSCalculatingDifferenceInChunks
 import com.cassbana.antifraud.workers.utils.SimSubscriptionManager
 import com.cassbana.antifraud.workers.utils.RSSyncingStrategy
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit
 @ExperimentalCoroutinesApi
 class RSSIMInfoCollectWorker(
     val context: Context, workerParams: WorkerParameters
-) : CoroutineWorker(context, workerParams), KoinComponent {
+) : CoroutineWorker(context, workerParams), MySdkKoinComponent {
 
     companion object {
         private const val TAG = "SIMInfoCollectWorker"
